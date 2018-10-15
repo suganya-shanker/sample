@@ -1,0 +1,123 @@
+package oct;
+
+public class Oct15 {
+
+	public static void main(String[] args) {
+		swaparray();
+		primenumbers(100);
+		int[] a = { 50, 8, 3, 4, 2, 1, 9 };
+		maxnuminarr(a);
+		arraysort(a);
+		maxfreq();
+		perfectnum(15);
+		perfectnum(6);
+	}
+
+	public static void swaparray() {
+		System.out.println("Before swap");
+		int[] a = { 1, 2, 3, 4, 5 };
+		displayarray(a);
+		int[] b = { 6, 7, 8, 9, 10 };
+		displayarray(b);
+		for (int i = 0; i < a.length; i++) {
+			a[i] = a[i] + b[i];
+			b[i] = a[i] - b[i];
+			a[i] = a[i] - b[i];
+		}
+		System.out.println("After swap");
+		displayarray(a);
+		displayarray(b);
+
+	}
+
+	public static void displayarray(int[] a) {
+		for (int i = 0; i < a.length; i++) {
+			System.out.print(a[i] + " ");
+		}
+		System.out.println();
+	}
+
+	public static void primenumbers(int n) {
+		System.out.println("The prime numbers from 1 to " + n);
+		for (int i = 1; i <= n; i++) {
+			int count = 0;
+			for (int j = 1; j <= i; j++) {
+				if (i % j == 0) {
+					count++;
+				}
+			}
+			if (count == 2) {
+				System.out.print(i + " ");
+			}
+		}
+	}
+
+	public static void arraysort(int[] a) {
+		System.out.println("Array before sorting");
+		displayarray(a);
+		for (int i = 0; i < a.length; i++) {
+			for (int j = i; j < a.length; j++) {
+				int temp = 0;
+				if (a[j] < a[i]) {
+					temp = a[i];
+					a[i] = a[j];
+					a[j] = temp;
+				}
+			}
+		}
+		System.out.println("Array after sorting");
+		displayarray(a);
+	}
+
+	public static void maxnuminarr(int[] a) {
+		System.out.println("");
+		displayarray(a);
+		int max1 = 0;
+		int max2 = 0;
+		for (int i = 0; i < a.length; i++) {
+			if (a[i] > max1) {
+				max2 = max1;
+				max1 = a[i];
+			} else if (a[i] > max2) {
+				max2 = a[i];
+			}
+		}
+		System.out.println("first maximum number is " + max1);
+		System.out.println("second maximum number is " + max2);
+	}
+
+	public static void maxfreq() {
+		int[] a = { 1, 5, 4, 2, 3, 4, 5, 3, 3, 4, 3, };
+		displayarray(a);
+		int maxcount = 0;
+		int num = 0;
+		for (int i = 0; i < a.length; i++) {
+			int count = 0;
+			for (int j = 0; j < a.length; j++) {
+				if (a[i] == a[j]) {
+					count++;
+				}
+			}
+			if (count >= maxcount) {
+				maxcount = count;
+				num = a[i];
+			}
+		}
+		System.out.println("The frequently occured number is " + num + " for " + maxcount + " times");
+
+	}
+
+	public static void perfectnum(int num) {
+		int sum = 0;
+		for (int j = 1; j < num; j++) {
+			if (num % j == 0) {
+				sum += j;
+			}
+		}
+		if (num == sum) {
+			System.out.println(num + " is perfect number");
+		} else {
+			System.out.println(num + " is not perfect number");
+		}
+	}
+}
