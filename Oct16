@@ -1,0 +1,52 @@
+package oct;
+
+public class Oct16 {
+
+	public static void main(String[] args) {
+		String[] s= {"chris","adam","rock","scott","bryan"};
+sortstringarray(s);
+//2d array with start, end index and value
+int[][] a={{1, 5, 3},{4, 8, 7},{ 6, 9, 1}};
+System.out.println("\nThe largest value in the array after manipulation is "+arrayManipulation(10,a));//passing array length and manipulation values
+	}
+public static void sortstringarray(String[] s) {
+	System.out.println("Before sort");
+	displayarray(s);
+	for(int i=0;i<s.length;i++) {
+		for(int j=i;j<s.length;j++) {
+			String temp="";
+			if(s[i].compareTo(s[j])>0) {
+				temp=s[i];
+				s[i]=s[j];
+				s[j]=temp;
+				}
+		}
+	}
+	System.out.println("\nAfter sort");
+	displayarray(s);
+}
+public static void displayarray(String[] s) {
+	for(int i=0;i<s.length;i++) {
+		System.out.print(s[i]+" ");
+	}
+}
+static long arrayManipulation(int n, int[][] queries) {
+    int max=0;
+int[] a=new int[n];
+    for(int i=0;i<queries.length;i++){
+            int start=queries[i][0];
+        int end=queries[i][1];
+        int value=queries[i][2];   
+        for(int j=start-1;j<end;j++){
+            a[j]+=value;
+        }
+    }
+    for(int i=0;i<a.length;i++){
+        if(a[i]>max){
+max=a[i];
+        }
+    }
+return max;
+}
+
+}
