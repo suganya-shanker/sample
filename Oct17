@@ -1,0 +1,44 @@
+package oct;
+
+import java.util.HashSet;
+
+public class Oct17 {
+	public static void main(String []args){
+	    System.out.println("First recurring character in the the given String");
+	        String str="ABCDBA";
+	        System.out.println("String - "+str);
+	        int count=0;
+	        HashSet hs=new HashSet();
+	        for(int i=0;i<str.length();i++){
+	            if(hs.contains(str.charAt(i))){
+	                System.out.println("First recurring character in the given string is "+str.charAt(i));
+	                count++;
+	                break;
+	                }
+	           else{
+	               hs.add(str.charAt(i));
+	           }}
+	        if(count==0){
+	            System.out.println("No recurring character in the given string "+str);
+	        }
+	        armstrongnum(370);
+	        armstrongnum(140);
+
+	        }
+public static void armstrongnum(int num) {
+	int n=num;
+	int temp=0;
+	while(num>0) {
+		temp+=Math.pow(num%10,3);
+		num=num/10;
+	}
+	if(n==temp) {
+		System.out.println(n+" is Armstrong number");
+	}
+	else {
+		System.out.println(n+" is not Armstrong number");
+	}
+	
+}
+}
+
