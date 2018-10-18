@@ -1,0 +1,74 @@
+package oct;
+
+public class Oct18 {
+
+	public static void main(String[] args) {
+fibonacciseries(10);
+palindrome("madam");
+palindrome("test");
+factorial(5);
+int[] a= {1,2,3,4,5,3,4};
+int[] b= {1,2,3,4};
+reversearray(a);
+reversearray(b);
+//Finding duplicate elements in an array
+duplicate(a);
+	}
+public static void fibonacciseries(int n) {
+	int a=0;
+	int b=1;
+	int c=0;
+	for(int i=0;i<n;i++) {
+c=a+b;
+a=b;
+b=c;
+		System.out.println(a);
+	}
+}
+public static void palindrome(String s) {
+	String revs="";
+	for(int i=s.length()-1;i>=0;i--) {
+		revs+=s.charAt(i);
+	}
+	if(s.equals(revs)) {
+	System.out.println("The string "+s+" is palindrome");
+		}
+	else {
+		System.out.println("The string "+s+" is not palindrome");
+	}
+}
+public static void factorial(int num) {
+	int f=1;
+	for(int i=1;i<=num;i++) {
+		f*=i;
+	}
+	System.out.println(f);
+}
+
+public static void reversearray(int[] a) {
+	System.out.println("Before reversing array");
+	Oct15 o=new Oct15();
+	o.displayarray(a);
+	for(int i=0;i<a.length/2;i++) {
+		int temp=a[i];
+		a[i]=a[a.length-i-1];
+		a[a.length-i-1]=temp;
+	}
+	System.out.println("After reversing array");
+	o.displayarray(a);
+}
+public static void duplicate(int[] a) {
+	System.out.println("Duplicate elements in a array");
+	for(int i=0;i<a.length;i++) {
+		int count=0;
+		for(int j=i;j<a.length;j++) {
+			if(a[i]==a[j]) {
+				count++;
+			}
+		}
+		if(count>1) {
+			System.out.println(a[i]);
+		}
+	}
+}
+}
