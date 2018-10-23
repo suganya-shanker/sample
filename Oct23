@@ -1,0 +1,36 @@
+//Calculate the hourglass sum for every hourglass in array, then print the maximum hourglass sum.
+package oct;
+
+import java.util.ArrayList;
+
+public class Oct23 {
+
+	public static void main(String[] args) {
+		ArrayList<Integer> a = new ArrayList<Integer>();
+		int max = 0;
+		int[][] array = { { 1, 1, 1, 0, 0, 0 }, { 0, 1, 0, 0, 0, 0 }, { 1, 1, 1, 0, 0, 0 }, { 0, 0, 2, 4, 4, 0 },
+				{ 0, 0, 0, 2, 0, 0 }, { 0, 0, 1, 2, 4, 0 } };
+		for (int i = 0; i < array.length - 2; i++) { // row
+			for (int j = 0; j < array.length - 2; j++) { // column
+				int sum = 0;
+				for (int x = i; x <= i + 2; x++) {
+					for (int y = j; y <= j + 2; y++) {
+						if (x == i + 1 && ((y == j) || (y == j + 2))) {
+							continue;
+						} else {
+							sum += array[x][y];
+						}
+					}
+				}
+				a.add(sum);
+			}
+		}
+		for (int i = 0; i < a.size(); i++) {
+			if (a.get(i) > max) {
+				max = a.get(i);
+			}
+		}
+		System.out.println("The total number of calculated hourglass value is : " + a.size());
+		System.out.println("The highest hourglass value is from the hourglass : " + max);
+	}
+}
