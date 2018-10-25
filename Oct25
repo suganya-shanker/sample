@@ -1,0 +1,49 @@
+package oct;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+
+public class Oct24 {
+
+	public static void main(String[] args) {
+		int[][] array = { { 1, 0, 5 }, { 1, 1, 7 }, { 1, 0, 3 }, { 2, 1, 0 }, { 2, 1, 1 } };
+		dynamicArray(2, array);
+	}
+
+	static void dynamicArray(int n, int[][] a) {
+		int lastAnswer = 0;
+		ArrayList<ArrayList<Integer>> sequence = new ArrayList<ArrayList<Integer>>(n);
+		HashSet<Integer> set = new HashSet<Integer>();
+		for (int i = 0; i < a.length; i++) {
+			// finding subsequence
+			int x = a[i][1];
+			int sequenceindex = (x ^ lastAnswer) % n;
+			// checking query whether it is 1 or 2
+			if (a[i][0] == 1) {
+				// System.out.println("1st query");
+				// adding element y into sequence
+				ArrayList<Integer> li = new ArrayList<Integer>(n);
+				if (set.contains(sequenceindex) == false) {
+					li.add(a[i][2]);
+					sequence.add(li);
+					set.add(sequenceindex);
+				} else {
+					li = sequence.get(sequenceindex);
+					sequence.remove(sequenceindex);
+					li.add(a[i][2]);// li.add(a.get(i).get(2));
+					sequence.add(sequenceindex, li);
+				}
+			} else {
+				// System.out.println("2nd query");
+				// finding length of subsequence
+				int size = sequence.get(sequenceindex).size();
+				// finding the element
+				int index = a[i][2] % size;
+				// getting lastAnswer
+				lastAnswer = sequence.get(sequenceindex).get(index);
+				System.out.println(lastAnswer);
+			}
+		}
+	}
+
+}
