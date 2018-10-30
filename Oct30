@@ -1,0 +1,66 @@
+package oct;
+
+import java.util.ArrayList;
+
+public class Oct30 {
+	static ArrayList<ArrayList> a=new ArrayList<ArrayList>();
+	public static void main(String[] args) {
+		String[] strings = { "abcde", "sdaklfj", "asdjf", "na", "basdn", "sdaklfj", "asdjf", "na", "asdjf", "na",
+				"basdn", "sdaklfj", "asdjf" };
+		String[] queries = {"abcde", "sdaklfj", "asdjf", "na", "basdn"};
+		matchingStrings(strings, queries);
+		add("Smith",30);
+		add("Jones",15);
+		add("amy",20);
+		add("test",40);
+		System.out.println("Before sorting");
+		display();
+		sort(a.size(), a);
+	}
+	public static void add(String name,int score) {
+		ArrayList innera=new ArrayList<>();
+		innera.add(name);
+		innera.add(score);
+		a.add(innera);
+	}
+
+	private static void sort(int size, ArrayList<ArrayList> a) {
+		for(int i=0;i<a.size();i++) {
+			int x=(int) a.get(i).get(1);
+			for(int j=i+1;j<a.size();j++) {
+				int y=(int) a.get(j).get(1);
+			if(y>x) {
+				//System.out.println("Before swap");
+				ArrayList temp=a.get(i);
+				a.add(i,a.get(j));
+				a.remove(i+1);
+				a.add(j,temp);
+				a.remove(j+1);
+				//System.out.println("After swap");
+				//display();
+			}
+		}
+		}
+		System.out.println("After sorting array in decending order of inner array value");
+		display();
+	}
+	public static void display() {
+		for(int i=0;i<a.size();i++) {
+			System.out.println(a.get(i).toString());
+		}
+	}
+
+	static void matchingStrings(String[] strings, String[] queries) {
+		int[] count = new int[queries.length];
+		for (int i = 0; i < queries.length; i++) {
+			int c = 0;
+			for (int j = 0; j < strings.length; j++) {
+				if (strings[j].equals(queries[i])) {
+					c++;
+				}
+			}
+			System.out.println(c);
+		}
+	}
+
+}
