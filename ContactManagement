@@ -1,0 +1,133 @@
+package contactmanagement;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class ContactDetails {
+	static Scanner s = new Scanner(System.in);
+	static ArrayList<String> details = new ArrayList<String>();
+	static HashMap<String, ArrayList<String>> map = new HashMap<String, ArrayList<String>>();
+
+	public static void main(String[] args) {
+		int input = 0;
+		while (input != 4) {
+			System.out.println("1.Crete new contact \n2.Update contact details \n3.View contact details \n4.Exit");
+			input = s.nextInt();
+			String name = "";
+			switch (input) {
+			case 1:
+				System.out.println("Enter the details to create new contact");
+				System.out.println("FirstName");
+				name = s.next();
+				create(name);
+				break;
+			case 2:
+				System.out.println("Enter the contact name to update the details");
+				name = s.next();
+				update(name);
+				break;
+			case 3:
+				System.out.println("Enter the name to view details");
+				view(s.next());
+				break;
+			case 4:
+				System.out.println("Finished");
+				break;
+			default:
+				System.out.println("Enter proper value");
+			}
+		}
+	}
+
+	public static void create(String firstname) {
+		ArrayList<String> details = new ArrayList<String>();
+		System.out.println("LastName");
+		String lastname = s.next();
+		System.out.println("Mobile number");
+		String mobilenum = s.next();
+		System.out.println("Office number");
+		String officenum = s.next();
+		System.out.println("Personal email address");
+		String personalemail = s.next();
+		System.out.println("Official email address");
+		String officeemail = s.next();
+		details.add(firstname);
+		details.add(lastname);
+		details.add(mobilenum);
+		details.add(officenum);
+		details.add(personalemail);
+		details.add(officeemail);
+		map.put(firstname, details);
+		// System.out.println(map.toString());
+	}
+
+	public static void update(String name) {
+		if (map.keySet().contains(name)) {
+			for (String key : map.keySet()) {
+				if (key.equals(name)) {
+					details = map.get(key);
+					int in = 0;
+					while (in != 6) {
+						System.out.println(
+								"Enter the number to update the details \n1.Lastname \n2.mobilenumber \n3.officenumber \n4.personalemail \n5.officialemail \n6.Exit");
+						in = s.nextInt();
+						String update = "";
+						if (in != 6) {
+							System.out.println("Enter the new detail");
+							update = s.next();
+						}
+						switch (in) {
+						case 1:
+							details.add(1, update);
+							details.remove(2);
+							break;
+						case 2:
+							details.add(2, update);
+							details.remove(3);
+							break;
+						case 3:
+							details.add(3, update);
+							details.remove(4);
+							break;
+						case 4:
+							details.add(4, update);
+							details.remove(5);
+							break;
+						case 5:
+							details.add(5, update);
+							details.remove(6);
+							break;
+						case 6:
+							System.out.println("Successfully updated");
+							break;
+						default:
+							System.out.println("Enter proper value");
+						}
+					}
+					map.put(key, details);
+				}
+			}
+		} else {
+			System.out.println("No details exist with the name" + name);
+			System.out.println("Enter 1 to create new contact with the name " + name);
+			int in = s.nextInt();
+			if (in == 1) {
+				create(name);
+			}
+		}
+
+	}
+
+	public static void view(String name) {
+		ArrayList<String> details = new ArrayList<String>();
+		for (String key : map.keySet()) {
+			if (key.equals(name)) {
+				details = map.get(key);
+				for (int i = 0; i < details.size(); i++) {
+					System.out.print(details.get(i) + " ");
+				}
+			}
+		}
+	}
+}
